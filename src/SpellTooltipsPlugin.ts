@@ -31,14 +31,14 @@ export class SpellTooltipsPlugin extends Plugin {
         };
 
         this.settings.disablePanel = {
-            text: 'Disable Default Information Panel',
+            text: 'Disable default information panel',
             type: SettingsTypes.checkbox,
             value: true,
             callback: () => this.setPanelVisibility(),
         } as any;
 
         this.settings.ctrlToggle = {
-            text: 'Toggle CTRL view',
+            text: 'CTRL is toggle',
             type: SettingsTypes.checkbox,
             value: false,
             callback: () => { },
