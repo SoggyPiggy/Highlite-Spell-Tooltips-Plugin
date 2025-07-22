@@ -1,0 +1,146 @@
+#hs-magic-menu .hs-magic-menu__information-panel[hl-spell-tooltip-hidden=true] {
+  display: none;
+}
+
+#hl-spell-tooltip-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  container-type: inline-size;
+  pointer-events: none;
+}
+
+#hl-spell-tooltip {
+  position: fixed;
+  flex-direction: column;
+  width: 220px;
+  background: linear-gradient(145deg, #18181b, #09090b);
+  border: 2px solid #27272a;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 9999;
+  color: #d4d4d8;
+}
+
+#hl-spell-tooltip.visible {
+  display: flex;
+}
+
+#hl-spell-tooltip hr {
+  width: 100%;
+  padding: 0;
+  margin: 5px 0px;
+  border: 0;
+  border-bottom: #3f3f46 1px solid;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 5px;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-header-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 5px;
+  justify-content: space-evenly;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-tags>div {
+  font-size: 10px;
+  text-transform: uppercase;
+  border: currentColor 1px solid;
+  border-radius: 4px;
+  padding: 1px 2px;
+}
+
+#hl-spell-tooltip .hs-spell-tooltip-requirements {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-equipped-item-requirement,
+#hl-spell-tooltip .hl-spell-tooltip-quest-requirement {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-item-requirement-image {
+  display: inline-block;
+  height: var(--hs-inventory-item-size);
+  width: var(--hs-inventory-item-size);
+  background-image: var(--hs-url-inventory-items);
+  background-repeat: no-repeat;
+  background-size: var(--hs-url-inventory-items-width) var(--hs-url-inventory-items-height);
+  background-position: 0rem 0rem;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-item-requirement-name,
+#hl-spell-tooltip .hl-spell-tooltip-quest-requirement-name {
+  text-decoration: underline;
+  padding-right: 0.25em;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-description {
+  font-weight: normal;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-recipe-ctrl-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-recipe {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-recipe-image {
+  display: inline-block;
+  margin: -0.625rem -0.625rem -0.875rem -0.625rem;
+  background-image: var(--hs-url-inventory-items);
+  background-position: 0rem 0rem;
+  background-repeat: no-repeat;
+  height: var(--hs-inventory-item-size);
+  min-height: var(--hs-inventory-item-size);
+  min-width: var(--hs-inventory-item-size);
+  transform: scale(var(--hs-magic-menu-recipe-icon-size-factor));
+  width: var(--hs-inventory-item-size);
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-recipe-name {
+  margin-left: -5px;
+  padding-right: 5px;
+  "
+
+}
+
+#hl-spell-tooltip .hl-spell-tooltip-ctrl {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 4px;
+  border: currentColor 1px solid;
+  border-radius: 4px;
+  align-self: end;
+}
