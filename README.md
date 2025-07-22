@@ -1,9 +1,6 @@
-# Highlite Example Plugin Template
+# Highlite Spell Tooltips Plugin
 
-A template repository for creating plugins for the HighLite client. This template showcases the basic structure, lifecycle methods, and how to use static resources like HTML, CSS, images, and audio files.
-
-> **📋 This is a Template Repository**  
-> Use this template to quickly create your own HighLite plugin by clicking the "Use this template" button on GitHub, or generate a new repository from this template.
+A repository for the Spell Tooltips plugin for the HighLite client.
 
 ## Getting Started
 
@@ -14,11 +11,10 @@ A template repository for creating plugins for the HighLite client. This templat
 
 ### Installation
 
-1. **Use this template**: Click the "Use this template" button on GitHub to create a new repository based on this template
-2. **Clone your new repository**: 
+2. **Clone repository**: 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_PLUGIN_NAME.git
-   cd YOUR_PLUGIN_NAME
+   git clone https://github.com/SoggyPiggy/Highlite-Spell-Tooltips-Plugin.git
+   cd Highlite-Spell-Tooltips-Plugin
    ```
 3. **Install dependencies**:
 
@@ -39,24 +35,20 @@ To build the plugin for production:
 yarn build
 ```
 
-The built plugin will be available in the `dist/` directory as `ExamplePlugin.js`.
+The built plugin will be available in the `dist/` directory as `SpellTooltipsPlugin.js`.
 
 ## Project Structure
 
 ```
 Example-Plugin/
 ├── src/
-│   ├── ExamplePlugin.ts    # Main plugin class
+│   ├── SpellTooltipsPlugin.ts    # Main plugin class
 │   └── types.d.ts          # TypeScript type declarations for static resources
 ├── resources/
 │   ├── css/
-│   │   └── base.css        # Stylesheet for the plugin
 │   ├── html/
-│   │   └── html.html       # HTML template
 │   ├── images/
-│   │   └── image.png       # Example image asset
 │   └── sounds/
-│       └── sound.mp3       # Exammple audio asset
 ├── package.json            # Project configuration and dependencies
 ├── rollup.config.mjs       # Build configuration
 ├── tsconfig.json          # TypeScript configuration
@@ -70,9 +62,9 @@ Example-Plugin/
 The main plugin class extends the base `Plugin` class from `@highlite/plugin-api`:
 
 ```typescript
-class ExamplePlugin extends Plugin {
-    pluginName = "ExamplePlugin";
-    author: string = "Your Name";  // Update this with your name
+class SpellTooltipsPlugin extends Plugin {
+    pluginName = "SpellTooltipsPlugin";
+    author: string = "SoggyPiggy";  // Update this with your name
     
     // Plugin lifecycle methods
     init(): void { }
@@ -157,10 +149,10 @@ The `types.d.ts` file provides TypeScript support for importing static resources
 
 To customize this template for your own plugin:
 
-1. **Rename your plugin**: Update the `pluginName` and `author` properties in `src/ExamplePlugin.ts`
+1. **Rename your plugin**: Update the `pluginName` and `author` properties in `src/SpellTooltipsPlugin.ts`
 2. **Update package.json**: 
-   - Change the `name` field to match your plugin name (e.g., `"YourPluginName"`)
-   - Update the `main` field if you rename the main TypeScript file (e.g., `"src/YourPluginName.ts"`)
+   - Change the `name` field to match your plugin name (e.g., `"SpellTooltipsPlugin"`)
+   - Update the `main` field if you rename the main TypeScript file (e.g., `"src/SpellTooltipsPlugin.ts"`)
    - Rerun `yarn install` to make the worksapce properly recognize the new package name
 3. **Replace the HTML content** in `resources/html/html.html`
 4. **Modify styles** in `resources/css/base.css`
@@ -190,12 +182,12 @@ Testing your plugin locally is essential before publishing to the Plugin Hub. Hi
 3. **Copy the built plugin**:
    Copy your built plugin file to the HighLite plugins directory:
    ```bash
-   cp dist/ExamplePlugin.js /path/to/HighLiteDesktop/src/renderer/client/highlite/plugins/
+   cp dist/SpellTooltipsPlugin.js /path/to/HighLiteDesktop/src/renderer/client/highlite/plugins/
    ```
 
 ### Testing Guidelines
 
-- **Plugin Location**: Place any built plugin (e.g., `PluginName.js`) in `HighliteDesktop/src/renderer/client/highlite/plugins/`
+- **Plugin Location**: Place any built plugin (e.g., `SpellTooltipsPlugin.js`) in `HighliteDesktop/src/renderer/client/highlite/plugins/`
 - **Automatic Loading**: Plugins in this directory are automatically loaded by the client
 - **Name Conflicts**: If testing an existing Plugin Hub plugin, temporarily use a different name to avoid conflicts with the remotely pulled version
 - **Hot Reloading**: After making changes, rebuild your plugin and replace the file in the plugins directory
