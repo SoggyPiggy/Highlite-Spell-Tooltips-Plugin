@@ -8,6 +8,7 @@
     "build": "node build.mjs"
   },
   "main": "src/SpellTooltipsPlugin.ts",
+  "version": "1.0.0",
   "devDependencies": {
     "@highlite/plugin-api": "^1.0.5",
     "esbuild": "^0.25.8",
