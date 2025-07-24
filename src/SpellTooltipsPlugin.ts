@@ -13,7 +13,6 @@ export class SpellTooltipsPlugin extends Plugin {
     containerDiv: HTMLDivElement | null = null;
     tooltipDiv: HTMLDivElement | null = null;
     spellDef: any = null;
-    ingredientBackgroundPositions: string[] = [];
     keyDownCallback: ((event: KeyboardEvent) => void) | null = null;
     keyUpCallback: ((event: KeyboardEvent) => void) | null = null;
     isDevMode = false;
@@ -75,22 +74,6 @@ export class SpellTooltipsPlugin extends Plugin {
 
     SpellMenuManager_handleSpellItemPointerOver(e, t) {
         this.spellDef = e._spellDef;
-        this.ingredientBackgroundPositions = Array.from(
-            e?._spellInformationContainer?._scrollsContainer?.children ?? []
-        )
-            .filter((recipeDiv) => recipeDiv instanceof HTMLElement)
-            .map((recipeDiv) => {
-                return (
-                    Array.from(recipeDiv.children)
-                        .filter((div) => div instanceof HTMLElement)
-                        .find((div) =>
-                            div.classList.contains(
-                                "hs-spell-recipe-item__image"
-                            )
-                        )?.style?.backgroundPosition ?? ""
-                );
-            });
-
         this.setTooltipPosition({
             // NOTE: adding 20 for half of the spell button width
             x: t.X - t.OffsetX + 20,
@@ -264,8 +247,9 @@ export class SpellTooltipsPlugin extends Plugin {
     }
 
     private makeRecipeHTML(): string {
+        if (!this.spellDef) return "";
         const isBloodTeleport =
-            this.spellDef?.ID ===
+            this.spellDef.ID ===
             (this.gameHooks?.MagicSkillManager?.BLOOD_TELEPORT_ID ?? 24);
         if (isBloodTeleport) {
             return `
@@ -275,16 +259,16 @@ export class SpellTooltipsPlugin extends Plugin {
                 </div>
             `;
         }
-        if (this.ingredientBackgroundPositions.length < 1) {
+        const ingredients = this.spellDef?.Recipe?.Ingredients;
+        if (!Array.isArray(ingredients) || ingredients.length < 1) {
             return '<div style="flex:1;"></div>';
         }
         return [
             `<div class="hl-spell-tooltip-recipe" style="flex-direction:${
                 this.isExpanded ? "column" : "row"
             }">`,
-            ...this.ingredientBackgroundPositions.map(
-                (backgroundPosition, ingredientIndex) =>
-                    this.makeIngredientHTML(backgroundPosition, ingredientIndex)
+            ...ingredients.map((ingredient) =>
+                this.makeIngredientHTML(ingredient)
             ),
             `</div>`,
         ]
@@ -292,18 +276,17 @@ export class SpellTooltipsPlugin extends Plugin {
             .join("");
     }
 
-    private makeIngredientHTML(
-        backgroundPosition: string,
-        ingredientIndex: number
-    ) {
-        const ingredient =
-            this.spellDef?.Recipe?.Ingredients?.[ingredientIndex];
+    private makeIngredientHTML(ingredient) {
+        if (!ingredient) return "";
+        const backgroundPosition =
+            this.gameHooks?.InventoryItemSpriteManager?.getCSSBackgroundPositionForItem(
+                ingredient.ItemID
+            ) ?? "0rem 0rem";
         const item = this.gameHooks?.ItemDefinitionManager?.getDefById(
-            ingredient?.ItemID
+            ingredient.ItemID
         );
         const name = item?.NameCapitalized ?? item?.Name ?? "";
         const amount = ingredient.Amount;
-        if (!ingredient) return "";
         return [
             `<div>`,
             `<div class="hl-spell-tooltip-recipe-image" style="background-position:${backgroundPosition};"></div>`,
