@@ -7,7 +7,7 @@ await esbuild.build({
   bundle: true,
   minify: false,
   outExtension: { '.js': '.js' },
-  outdir: 'dist',
+  outdir: process?.env?.NODE_ENV === "dev" ? '../HighliteDesktop/src/renderer/client/plugins' : 'dist',
   format: 'esm',
   external: ['@babylonjs/core', '@highlite/plugin-api'],
   loader: {

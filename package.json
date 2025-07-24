@@ -5,7 +5,8 @@
     "node": ">=22.0.0"
   },
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "dev": "NODE_ENV=dev node build.mjs"
   },
   "main": "src/SpellTooltipsPlugin.ts",
   "version": "1.0.0",
